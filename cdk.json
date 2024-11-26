@@ -29,6 +29,18 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+
+    "stackName": "image-optimization",
+    "S3_IMAGE_BUCKET_NAME": "winlads-core",
+    "TRANSFORMED_IMAGES_BUCKET": "winlads-optimized-images",
+    "STORE_TRANSFORMED_IMAGES": "true",
+    "S3_TRANSFORMED_IMAGE_EXPIRATION_DURATION": "30",
+    "LAMBDA_FUNCTION_NAME": "winlads-image-optimizer",
+    "LAMBDA_MEMORY": "2048",
+    "LAMBDA_TIMEOUT": "30",
+    "MAX_IMAGE_SIZE": "5000000",
+    "DEPLOY_SAMPLE_WEBSITE": "false",
+    "CLOUDFRONT_CORS_ENABLED": "true"
   }
 }

@@ -46,7 +46,10 @@ type LambdaEnv = {
 
 export class ImageOptimizationStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
-    super(scope, id, props);
+    super(scope, id, {
+      stackName: 'image-optimization',  // Custom stack name
+      ...props
+    });
 
     // Change stack parameters based on provided context
     STORE_TRANSFORMED_IMAGES = this.node.tryGetContext('STORE_TRANSFORMED_IMAGES') || STORE_TRANSFORMED_IMAGES;
@@ -122,6 +125,7 @@ export class ImageOptimizationStack extends Stack {
     // create bucket for transformed images if enabled in the architecture
     if (STORE_TRANSFORMED_IMAGES === 'true') {
       transformedImageBucket = new s3.Bucket(this, 's3-transformed-image-bucket', {
+        bucketName: this.node.tryGetContext('TRANSFORMED_IMAGES_BUCKET') || undefined,
         removalPolicy: RemovalPolicy.DESTROY,
         autoDeleteObjects: true,
         lifecycleRules: [
